@@ -3,7 +3,7 @@
 set -e
 
 #Terraform use to create the infrastructure for instances
-terraform init && terraform apply -auto-approve
+terraform init && terraform apply -auto-approve "-lock = false" 
 
 # to get public IP and store the variable 
 a=$(aws ec2 describe-instances --region ap-southeast-1 --filters 'Name=tag:Name,Values=MMK' --query 'Reservations[].Instances[].PublicIpAddress' --output text)
